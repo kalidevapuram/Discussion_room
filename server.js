@@ -18,8 +18,8 @@ app.get('/', function(req, res) {
 // });
 
 
-var port_number = http.listen(process.env.PORT || 3000);
-app.listen(port_number);
+var port_number = app.listen(process.env.PORT || 3000);
+// app.listen(port_number);
 
 
 // http.listen(process.env.PORT || 3000, function(){
