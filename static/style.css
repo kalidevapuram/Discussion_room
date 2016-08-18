@@ -1,0 +1,108 @@
+
+
+#center-div{
+	/*border: 1px solid black;*/
+	margin-left: 150px;
+	margin-top: 30px;
+    position: fixed;
+    max-height:340px;
+    overflow-y: scroll;
+    font-family: Times New Roman, serif;
+    color: white;
+    font-size: 1.2em;
+}
+#top_div{
+	margin-top: 10px;
+}
+
+
+    #alert {color: #39f !important;}
+@-webkit-keyframes colours {
+     0% {color: #39f;}
+ 25% {color: #8bc5d1;}
+ 50% {color: #f8cb4a;}
+ 75% {color: #8bc5d1;}
+100% {color: #39f;}
+
+}
+@-moz-keyframes colours {
+      0% {color: #39f;}
+ 25% {color: #8bc5d1;}
+ 50% {color: #f8cb4a;}
+ 75% {color: #8bc5d1;}
+100% {color: #39f;}
+
+}
+
+#alert {
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: colours;
+    -webkit-animation-timing-function: ease;
+    -moz-animation-direction: normal;
+    -moz-animation-duration: 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-name: colours;
+    -moz-animation-timing-function: ease;
+}
+
+#line_join{
+    position: fixed;
+    margin-left:950px;
+}
+#enter_text{
+	margin-left: 130px;
+	margin-top: 430px;
+	overflow-y: scroll;
+    position: fixed;
+
+}
+
+#online{
+    /*margin-left: 00px;*/
+    border-radius: 5px;
+    margin-top: 10px;
+    position: fixed;
+    overflow-y: scroll;
+    max-height:200px;
+    font-family: Times New Roman, serif;
+    color: white;
+    font-size: 1.2em;
+}
+#line{
+    margin-top: 30px;
+    font-family: Gill Sans, sans-serif;
+}
+#joined{
+    position: fixed;
+    overflow-y: scroll;
+    max-height:250px;
+    margin-top: 10px;
+    font-family: Times New Roman, serif;
+    color: white;
+    font-size: 1.2em;
+
+    
+}
+#content{
+    
+}
+
+#join{
+    margin-top: 80px;
+    font-family: Gill Sans, sans-serif;
+
+}
+#chatter{
+    display: inline-block;
+}
+#button{
+    display: inline-block;
+    margin-left: -30px;
+    border-radius: 3px;
+    height: 73px;
+}
+#chat{
+    resize:none
+}

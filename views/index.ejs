@@ -1,0 +1,121 @@
+<html>
+<head>
+<title></title>
+    <link type="text/css" rel="stylesheet" href="../style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+        body  {
+    background-image: url("http://www.terracap.ca/wp-content/uploads/2014/03/blue-sky-1920x1080-nature-background-95-3057316881.jpg");
+    background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;}
+    </style>
+    
+    <script>
+    	(function(){
+
+            var socket;
+
+            $(document).ready(function() {
+                function namePrompt() {
+                    var name = prompt('Please enter your name');
+                    socket.emit('join', name);
+                    console.log("printing name", name);
+                }
+                console.log('Document is ready');
+                socket = io.connect();
+
+                namePrompt();
+                socket.on('nameFail', function() {
+                    namePrompt();
+                })
+
+                socket.on('user', function(users) {
+                    $('#online').html('');
+                    console.log("in user", users)
+                    for(var user in users){
+                        console.log("for loop users", users[user])
+                        $('#online').append(' ' + users[user] +  '<br>' )
+
+                    }
+                })
+                socket.on('message_received', function(messages) {
+                    $('#joined').html('');
+                    for(var j=0; j< messages.length; j++){
+                        $('#joined').append(messages[j].message + '<br/>' )
+                    }
+                    var element = document.getElementById("joined");
+                    element.scrollTop = element.scrollHeight;
+
+                })
+
+
+                socket.on('message_receive_user', function(name_messages) {
+                    $('#context').html('');
+                    for(var i=1; i<name_messages.length; i++){
+                        console.log("inside name_messages", name_messages[i])
+                         $('#context').append(' '+  '<strong>' + name_messages[i].name + ' : '+ '</strong>'+name_messages[i].message + '<br/>' )
+                    }
+                    var element = document.getElementById("context");
+                    console.log("printing element", element);
+                    element.scrollTop = element.scrollHeight;
+                })
+
+                $('#chatform').submit(function(e) {
+                    e.preventDefault();
+                    var message = $('#chat').val();
+
+                    socket.emit('message_send', message);
+
+
+                    $('#chat').val('');
+                })
+                $('#chat').keypress(function(e) {
+                    if (e.keyCode == 13 && !e.shiftKey) {
+                        e.preventDefault();
+                        $('#chatform').submit();
+                    }
+                })
+            })
+        })();
+    </script>
+    
+</head>
+<body>
+
+
+	<div class="container">
+            <div class="row top" id="top_div">
+ 
+                <h2><center id="alert">Welcome to Discussion Room</center></h2>
+           </div>
+			<div class="col-md-7" id="center-div">
+				<div id="context"></div>
+			</div>
+            <div class="col-xs-3" id="line_join">
+
+                <h5 id="line"><strong>Shows who are in online:</strong><div id="online"> </div></h5>
+                <h5 id="join"><strong>Joined/Left</strong> <div id="joined"></div></h5>
+                
+            </div>
+            <div class="col-md-11" id="enter_text">
+                <form id="chatform">
+                    <div class="col-md-8">
+                        <textarea class="form-control custom-control" rows="3"  id="chat"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="input-group-btn">
+    				        <button class="btn btn-primary" id="button">                            
+    				            <span>Send</span>
+    				        </button>
+    				    </span>
+                    </div>
+                </form>
+            </div>
+            
+    </div>
+    
+</body>
+</html>
