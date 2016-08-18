@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 
 var port_number = app.listen(process.env.PORT || 3000);
-// app.listen(port_number);
+app.listen(port_number);
 
 
 // this is a new line we're adding AFTER our server listener
