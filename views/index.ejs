@@ -22,9 +22,7 @@
                 function namePrompt() {
                     var name = prompt('Please enter your name');
                     socket.emit('join', name);
-                    console.log("printing name", name);
                 }
-                console.log('Document is ready');
                 socket = io.connect();
 
                 namePrompt();
@@ -34,9 +32,7 @@
 
                 socket.on('user', function(users) {
                     $('#online').html('');
-                    console.log("in user", users)
                     for(var user in users){
-                        console.log("for loop users", users[user])
                         $('#online').append(' ' + users[user] +  '<br>' )
 
                     }
@@ -55,11 +51,9 @@
                 socket.on('message_receive_user', function(name_messages) {
                     $('#context').html('');
                     for(var i=1; i<name_messages.length; i++){
-                        console.log("inside name_messages", name_messages[i])
                          $('#context').append(' '+  '<strong>' + name_messages[i].name + ' : '+ '</strong>'+name_messages[i].message + '<br/>' )
                     }
                     var element = document.getElementById("context");
-                    console.log("printing element", element);
                     element.scrollTop = element.scrollHeight;
                 })
 

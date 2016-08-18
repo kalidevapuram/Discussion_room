@@ -17,7 +17,6 @@ var user     = {},
     name_messages = [{user_name: '', user_message: ''}]
 
 io.sockets.on('connection', function(socket) {
-    console.log(socket.id, 'connected');
 
     socket.on('join', function(name) {
         if (name && name.length > 0) {
@@ -40,7 +39,6 @@ io.sockets.on('connection', function(socket) {
     })
 
     socket.on('disconnect', function() {
-        console.log(socket.id, 'disconnected');
 
         var message = {name: '', message: user[socket.id]+' has left the room'};
         messages.push(message);
