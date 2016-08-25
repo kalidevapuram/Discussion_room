@@ -1,13 +1,20 @@
+// Require the Express Module
 var express = require("express");
-var path = require("path");
+// Create an Express App
 var app = express();
-app.use(express.static(path.join(__dirname, "./static")));
+// Require path
+var path = require("path");
+// Setting our Static Folder Directory
+app.use(express.static(path.join(__dirname, './static')));
+// Setting our Views Folder Directory
 app.set('views', path.join(__dirname, './views'));
+// Setting our View Engine set to EJS
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
  res.render("index");
 })
 
+// tell your server which port to run on
 
 var port_number = app.listen(process.env.PORT || 3000);
 
@@ -28,7 +35,7 @@ io.sockets.on('connection', function(socket) {
             io.emit('user', user);
             io.emit('message_received', messages);
         } else {
-            socket.emit('nameFail');
+            socket.emit('wrongname');
         }
     })
     socket.on('message_send', function(message) {
@@ -40,7 +47,7 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('disconnect', function() {
 
-        var message = {name: '', message: user[socket.id]+' has left the room'};
+        var message = {name: '', message: user[socket.id]+'left the room'};
         messages.push(message);
         delete user[socket.id];
         io.emit('user', user);

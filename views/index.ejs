@@ -26,7 +26,7 @@
                 socket = io.connect();
 
                 namePrompt();
-                socket.on('nameFail', function() {
+                socket.on('wrongname', function() {
                     namePrompt();
                 })
 
@@ -42,8 +42,8 @@
                     for(var j=0; j< messages.length; j++){
                         $('#joined').append(messages[j].message + '<br/>' )
                     }
-                    var element = document.getElementById("joined");
-                    element.scrollTop = element.scrollHeight;
+                    var element_scroll = document.getElementById("joined");
+                    element_scroll.scrollTop = element_scroll.scrollHeight;
 
                 })
 
@@ -53,8 +53,8 @@
                     for(var i=1; i<name_messages.length; i++){
                          $('#context').append(' '+  '<strong>' + name_messages[i].name + ' : '+ '</strong>'+name_messages[i].message + '<br/>' )
                     }
-                    var element = document.getElementById("context");
-                    element.scrollTop = element.scrollHeight;
+                    var element_scroll = document.getElementById("context");
+                    element_scroll.scrollTop = element_scroll.scrollHeight;
                 })
 
                 $('#chatform').submit(function(e) {
